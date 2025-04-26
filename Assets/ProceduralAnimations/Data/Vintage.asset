@@ -12,6 +12,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95f39c8f387c4f64096c2682f683dc68, type: 3}
   m_Name: Vintage
   m_EditorClassIdentifier: 
+  sizeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.05849406
+      inSlope: -0.04857284
+      outSlope: -0.04857284
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9810791
+      value: 0.010840263
+      inSlope: -0.04857284
+      outSlope: -0.04857284
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   size: 0.1
   distance: 0.2
   gradient:

@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 namespace ProceduralAnimations.Snake
@@ -19,7 +20,7 @@ namespace ProceduralAnimations.Snake
         {
             set
             {
-                transform.GetChild(0).transform.localScale = Vector3.one * value;
+                transform.GetChild(0).DOScale(Vector3.one * value, 3f);                
             }
         }
 
@@ -27,7 +28,7 @@ namespace ProceduralAnimations.Snake
         { 
             set
             {
-                GetComponentInChildren<Renderer>().material.color = value;
+                GetComponentInChildren<Renderer>().material.DOColor(value, 1f);
             } 
         }
     }

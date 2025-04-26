@@ -5,6 +5,8 @@ namespace ProceduralAnimations.Snake
     [CreateAssetMenu(fileName = "Style", menuName = "Snake/Style")]
     public class Style : ScriptableObject
     {
+        [SerializeField] AnimationCurve sizeCurve = null;
+
         [SerializeField] float size = 0.1f;
 
         [SerializeField] float distance = 0.2f;
@@ -19,7 +21,7 @@ namespace ProceduralAnimations.Snake
         {
             body.Color = gradient.Evaluate(percentage);
             body.Distance = distance;
-            body.Size = size;
+            body.Size = sizeCurve.Evaluate(percentage);
         }
     }
 }

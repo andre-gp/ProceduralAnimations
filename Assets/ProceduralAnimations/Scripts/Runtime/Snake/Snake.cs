@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 namespace ProceduralAnimations.Snake
@@ -12,15 +13,19 @@ namespace ProceduralAnimations.Snake
 
         [SerializeField] float epsilon = 0.3f;
 
+        MovementType movement;
+
         Body head;
 
         Camera mainCamera;
 
         private void Start()
         {
+            movement = new SmoothMovement();
+
             mainCamera = Camera.main;
 
-            mainCamera.backgroundColor = currentStyle.BackgroundColor;
+            mainCamera.backgroundColor = currentStyle.BackgroundColor;            
 
             CreateSnake();
         }
@@ -53,8 +58,8 @@ namespace ProceduralAnimations.Snake
 
             if (mainCamera == null)
                 return; // Has not initialized
-
-            mainCamera.backgroundColor = currentStyle.BackgroundColor;
+            
+            mainCamera.DOColor(currentStyle.BackgroundColor, 1f);
 
             Body current = head;
             int position = 0;
@@ -77,24 +82,7 @@ namespace ProceduralAnimations.Snake
             mousePos.z = mainCamera.transform.position.y;
             Vector3 targetPosition = mainCamera.ScreenToWorldPoint(mousePos);
 
-            // Exponential Smoothing.
-            float t = 1.0f - Mathf.Pow(epsilon, Time.deltaTime);
-            head.transform.position = Vector3.Lerp(head.transform.position, targetPosition, t);
-
-            var current = head.Previous;
-
-            while (current != null)
-            {
-                Vector3 direction = current.transform.position - current.Next.transform.position;
-
-                direction.Normalize();
-
-                direction *= current.Distance;
-
-                current.transform.position = current.Next.transform.position + direction;
-
-                current = current.Previous;
-            }
+            movement.Move(head, targetPosition, epsilon);
         }
     }
 }
